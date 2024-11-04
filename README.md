@@ -1,50 +1,43 @@
-# React + TypeScript + Vite
+# Remote Dev
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+[![Build and Deploy](https://github.com/anmolshah80/rmtdev/actions/workflows/deploy_production.yml/badge.svg)](https://github.com/anmolshah80/rmtdev/actions/workflows/deploy_production.yml)
 
-Currently, two official plugins are available:
+- Install and configure vite-tsconfig-paths to use absolute paths for imports
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+  - To use absolute paths while importing the files inside `src` folder, install `vite-tsconfig-paths` as a dev dependency
 
-## Expanding the ESLint configuration
+  ```bash
+  npm install -D vite-tsconfig-paths
+  ```
 
-If you are developing a production application, we recommend updating the configuration to enable type aware lint rules:
+  - Add _paths_ key to `tsconfig.app.json`
 
-- Configure the top-level `parserOptions` property like this:
+  ```json
+  {
+    "compilerOptions": {
+      ...all other options
 
-```js
-export default tseslint.config({
-  languageOptions: {
-    // other options...
-    parserOptions: {
-      project: ['./tsconfig.node.json', './tsconfig.app.json'],
-      tsconfigRootDir: import.meta.dirname,
-    },
-  },
-})
-```
+      "paths": {
+        "@/*": ["./src/*"]
+      }
+    }
+  }
+  ```
 
-- Replace `tseslint.configs.recommended` to `tseslint.configs.recommendedTypeChecked` or `tseslint.configs.strictTypeChecked`
-- Optionally add `...tseslint.configs.stylisticTypeChecked`
-- Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and update the config:
+  - Call `tsconfigPaths` inside the _plugins_ array in `vite.config.ts`
 
-```js
-// eslint.config.js
-import react from 'eslint-plugin-react'
+  ```ts
+  import { defineConfig } from 'vite';
+  import react from '@vitejs/plugin-react';
+  import tsconfigPaths from 'vite-tsconfig-paths';
 
-export default tseslint.config({
-  // Set the react version
-  settings: { react: { version: '18.3' } },
-  plugins: {
-    // Add the react plugin
-    react,
-  },
-  rules: {
-    // other rules...
-    // Enable its recommended rules
-    ...react.configs.recommended.rules,
-    ...react.configs['jsx-runtime'].rules,
-  },
-})
-```
+  export default defineConfig({
+    plugins: [tsconfigPaths(), react()],
+  });
+  ```
+
+  - References
+    - [Streamlining Absolute Imports in React with TypeScript and Vite](https://dev.to/mizanrifat/streamlining-absolute-imports-in-react-with-typescript-and-vite-2bpp)
+    - [Absolute path in Vite project React TS (alias)](https://gist.github.com/luciaaldana/7343c77b56e02a1ab7ed2903c01a843d)
+
+-
