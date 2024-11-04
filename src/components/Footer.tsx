@@ -3,10 +3,9 @@ const Footer = () => {
 
   return (
     <footer className="footer">
-      <p>
-        &copy; {currentYear}
-        <img src="/favicon.png" alt="logo" />
-      </p>
+      <p className="copyright">&copy; {currentYear}</p>
+      <span>rmt</span>
+      <span>Dev</span>
     </footer>
   );
 };
