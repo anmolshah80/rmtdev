@@ -2,7 +2,12 @@ import BookmarksButton from '@/components/BookmarksButton';
 import Logo from '@/components/Logo';
 import SearchForm from '@/components/SearchForm';
 
-const Header = () => {
+type HeaderProps = {
+  searchText: string;
+  setSearchText: React.Dispatch<React.SetStateAction<string>>;
+};
+
+const Header = ({ searchText, setSearchText }: HeaderProps) => {
   return (
     <header className="header">
       <div className="header__top">
@@ -10,7 +15,7 @@ const Header = () => {
         <BookmarksButton />
       </div>
 
-      <SearchForm />
+      <SearchForm searchText={searchText} setSearchText={setSearchText} />
     </header>
   );
 };

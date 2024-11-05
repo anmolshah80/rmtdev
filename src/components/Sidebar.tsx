@@ -3,7 +3,15 @@ import SortingControls from '@/components/SortingControls';
 import JobList from '@/components/JobList';
 import PaginationControls from '@/components/PaginationControls';
 
-const Sidebar = () => {
+import { TJobItem } from '@/lib/types';
+
+type SidebarProps = {
+  jobItems: TJobItem[];
+  loading: boolean;
+  errorMessage: string;
+};
+
+const Sidebar = ({ jobItems, loading, errorMessage }: SidebarProps) => {
   return (
     <div className="sidebar">
       <div className="sidebar__top">
@@ -11,7 +19,11 @@ const Sidebar = () => {
         <SortingControls />
       </div>
 
-      <JobList />
+      <JobList
+        loading={loading}
+        errorMessage={errorMessage}
+        jobItems={jobItems}
+      />
       <PaginationControls />
     </div>
   );

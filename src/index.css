@@ -967,12 +967,11 @@ body::-webkit-scrollbar {
 .footer {
   max-width: 1000px;
   padding: 0 12px;
-  margin: 0 auto;
+  margin: 1.25rem auto;
   display: flex;
   align-items: center;
   justify-content: flex-start;
   color: #a4a9ac;
-  margin-block: 1.25rem;
   font-size: 18px;
 }
 
@@ -1062,6 +1061,15 @@ body::-webkit-scrollbar {
 .error__text {
   font-size: 13px;
   color: rgb(97, 98, 104);
+}
+
+.error-message {
+  color: crimson;
+  font-weight: bold;
+  font-size: 1.25rem;
+  margin-top: 2rem;
+  margin-inline: 1rem;
+  text-align: center;
 }
 
 /* MEDIA QUERIES */
