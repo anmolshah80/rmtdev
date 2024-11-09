@@ -1,6 +1,7 @@
 import JobListItem from '@/components/JobListItem';
 import Spinner from '@/components/Spinner';
 
+import { useActiveJobID } from '@/lib/hooks';
 import { TJobItem } from '@/lib/types';
 
 type JobListProps = {
@@ -26,11 +27,17 @@ const JobList = ({ jobItems, loading, errorMessage }: JobListProps) => {
     );
   }
 
+  const activeJobID = useActiveJobID();
+
   return (
     <ul className="job-list">
-      {jobItems.map((jobItem) => {
-        return <JobListItem key={jobItem.id} jobItem={jobItem} />;
-      })}
+      {jobItems.map((jobItem) => (
+        <JobListItem
+          key={jobItem.id}
+          jobItem={jobItem}
+          isActive={activeJobID === jobItem.id}
+        />
+      ))}
     </ul>
   );
 };

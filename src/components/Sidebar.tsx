@@ -9,13 +9,19 @@ type SidebarProps = {
   jobItems: TJobItem[];
   loading: boolean;
   errorMessage: string;
+  totalJobItems: number;
 };
 
-const Sidebar = ({ jobItems, loading, errorMessage }: SidebarProps) => {
+const Sidebar = ({
+  jobItems,
+  loading,
+  errorMessage,
+  totalJobItems,
+}: SidebarProps) => {
   return (
     <div className="sidebar">
       <div className="sidebar__top">
-        <ResultsCount />
+        <ResultsCount totalJobItems={totalJobItems} />
         <SortingControls />
       </div>
 

@@ -6,3 +6,14 @@ export type TJobItem = {
   relevanceScore: number;
   title: string;
 };
+
+export type TJobItemExpanded = TJobItem & {
+  description: string;
+  qualifications: string[];
+  reviews: Array<string>;
+  duration: string;
+  location: string;
+  salary: string;
+  coverImgURL: string;
+  companyURL: string;
+};

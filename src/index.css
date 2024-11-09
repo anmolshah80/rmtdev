@@ -486,7 +486,7 @@ body::-webkit-scrollbar {
 .search > button {
   cursor: pointer;
   position: absolute;
-  top: 17px;
+  top: 18px;
   left: 25px;
 }
 
@@ -710,11 +710,11 @@ body::-webkit-scrollbar {
   text-align: center;
 }
 
-.job-details > div {
+.job-details > .job-details__container {
   height: 100%;
 }
 
-.job-details > div > img {
+.job-details > .job-details__container > img {
   width: 100%;
   height: 174px;
   position: absolute;
@@ -1070,6 +1070,27 @@ body::-webkit-scrollbar {
   margin-top: 2rem;
   margin-inline: 1rem;
   text-align: center;
+}
+
+.search-input {
+  position: relative;
+}
+
+.slash-key {
+  position: absolute;
+  right: 1.5rem;
+  top: 25%;
+  bottom: 20%;
+  padding: 0.2rem 0.45rem;
+  border-radius: 0.25rem;
+  text-align: center;
+  font-size: 1.2rem;
+  background-color: #36454f;
+  color: #fff;
+}
+
+.slash-key-hide {
+  display: none;
 }
 
 /* MEDIA QUERIES */
