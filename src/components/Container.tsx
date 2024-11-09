@@ -7,15 +7,22 @@ type ContainerProps = {
   jobItems: TJobItem[];
   loading: boolean;
   errorMessage: string;
+  totalJobItems: number;
 };
 
-const Container = ({ jobItems, loading, errorMessage }: ContainerProps) => {
+const Container = ({
+  jobItems,
+  loading,
+  errorMessage,
+  totalJobItems,
+}: ContainerProps) => {
   return (
     <div className="container">
       <Sidebar
         jobItems={jobItems}
         loading={loading}
         errorMessage={errorMessage}
+        totalJobItems={totalJobItems}
       />
       <JobItemContent />
     </div>

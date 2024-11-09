@@ -5,12 +5,18 @@ import Container from '@/components/Container';
 import Footer from '@/components/Footer';
 import Header from '@/components/Header';
 
-import { useJobItems } from '@/lib/hooks';
+import { useDebounce, useJobItems } from '@/lib/hooks';
 
 function App() {
   const [searchText, setSearchText] = useState('');
+  const debouncedSearchText = useDebounce(searchText);
 
-  const [loading, errorMessage, jobItems] = useJobItems(searchText);
+  const {
+    loading,
+    errorMessage,
+    jobItemsSliced: jobItems,
+    totalJobItems,
+  } = useJobItems(debouncedSearchText);
 
   return (
     <>
@@ -22,6 +28,7 @@ function App() {
         loading={loading}
         errorMessage={errorMessage}
         jobItems={jobItems}
+        totalJobItems={totalJobItems}
       />
 
       <Footer />

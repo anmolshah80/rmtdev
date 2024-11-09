@@ -4,14 +4,17 @@ import { TJobItem } from '@/lib/types';
 
 type JobListItemProps = {
   jobItem: TJobItem;
+  isActive: boolean;
 };
 
-const JobListItem = ({ jobItem }: JobListItemProps) => {
+const JobListItem = ({ jobItem, isActive }: JobListItemProps) => {
   const { id, badgeLetters, company, daysAgo, title } = jobItem;
 
+  const listItemClassName = isActive ? 'job-item job-item--active' : 'job-item';
+
   return (
-    <li className="job-item">
-      <a href={`jobs/#${id.toString()}`} className="job-item__link">
+    <li className={listItemClassName}>
+      <a href={`#${id.toString()}`} className="job-item__link">
         <div className="job-item__badge">{badgeLetters}</div>
 
         <div className="job-item__middle">
