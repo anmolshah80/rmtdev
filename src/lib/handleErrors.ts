@@ -1,26 +1,17 @@
 import toast from 'react-hot-toast';
 
+const errorMessages: Record<number, string> = {
+  400: 'Error: 400, Bad Request',
+  401: 'Error: 401, Unauthorized',
+  404: 'Error: 404, Not Found',
+  500: 'Error: 500, Internal Server Error',
+};
+
 export const handleErrorStatuses = (status: number) => {
-  switch (status) {
-    case 400:
-      toast.error('Error: 400, Bad Request');
+  const defaultMessage = `Error Status Code: ${status.toString()}`;
+  const message = errorMessages[status] || defaultMessage;
 
-      throw new Error('Error: 400, Bad Request');
-    case 401:
-      toast.error('Error: 401, Unauthorized');
+  toast.error(message);
 
-      throw new Error('Error: 401, Unauthorized');
-    case 404:
-      toast.error('Error: 404, Not Found');
-
-      throw new Error('Error: 404, Not Found');
-    case 500:
-      toast.error('Error: 500, Internal Server Error');
-
-      throw new Error('Error: 500, Internal Server Error');
-    default:
-      toast.error(`Error Status Code: ${status.toString()}`);
-
-      throw new Error(`Error Status Code: ${status.toString()}`);
-  }
+  throw new Error(message);
 };
