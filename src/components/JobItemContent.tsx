@@ -34,7 +34,7 @@ const JobItemContent = () => {
   if (jobItemErrorMessage)
     return (
       <section className="job-details">
-        <p className="error-message">Error: {jobItemErrorMessage}</p>
+        <p className="error-message">{jobItemErrorMessage}</p>
       </section>
     );
 
@@ -104,7 +104,7 @@ const JobItemContent = () => {
               </p>
             </div>
             <ul className="qualifications__list">
-              {qualifications.map((qualification) => (
+              {qualifications.map((qualification: string) => (
                 <li key={qualification + id} className="qualifications__item">
                   {qualification}
                 </li>
@@ -120,7 +120,7 @@ const JobItemContent = () => {
               </p>
             </div>
             <ul className="reviews__list">
-              {reviews.map((review) => (
+              {reviews.map((review: string) => (
                 <li key={review + id} className="reviews__item">
                   {review}
                 </li>

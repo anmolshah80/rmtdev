@@ -55,3 +55,4 @@
 - Create a custom hook `useJobItem` in `lib/hooks.ts` to fetch an individual job item data from the API, manage loading, error and data states, and return them in a tuple
 - Create a custom hook `useDebounce` in `lib/hooks.ts` to delay the execution of state update until a specified time period has passed without any further changes to the input value, to reduce the unnecessary network requests
   - Source: [useDebounce](https://usehooks.com/usedebounce)
+- Change the fetch to `React Query` to _cache_ the fetch requests for _job list_ and individual _job item_ data

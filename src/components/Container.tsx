@@ -6,7 +6,7 @@ import { TJobItem } from '@/lib/types';
 type ContainerProps = {
   jobItems: TJobItem[];
   loading: boolean;
-  errorMessage: string;
+  errorMessage: string | undefined;
   totalJobItems: number;
 };
 

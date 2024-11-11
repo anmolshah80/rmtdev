@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import { Toaster } from 'react-hot-toast';
 
 import Background from '@/components/Background';
 import Container from '@/components/Container';
@@ -11,12 +12,10 @@ function App() {
   const [searchText, setSearchText] = useState('');
   const debouncedSearchText = useDebounce(searchText);
 
-  const {
-    loading,
-    errorMessage,
-    jobItemsSliced: jobItems,
-    totalJobItems,
-  } = useJobItems(debouncedSearchText);
+  const { loading, errorMessage, jobItems } = useJobItems(debouncedSearchText);
+
+  const jobItemsSliced = jobItems?.slice(0, 7) || [];
+  const totalJobItems = jobItems?.length || 0;
 
   return (
     <>
@@ -27,11 +26,13 @@ function App() {
       <Container
         loading={loading}
         errorMessage={errorMessage}
-        jobItems={jobItems}
+        jobItems={jobItemsSliced}
         totalJobItems={totalJobItems}
       />
 
       <Footer />
+
+      <Toaster position="top-right" />
     </>
   );
 }

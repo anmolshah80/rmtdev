@@ -8,7 +8,7 @@ import { TJobItem } from '@/lib/types';
 type SidebarProps = {
   jobItems: TJobItem[];
   loading: boolean;
-  errorMessage: string;
+  errorMessage: string | undefined;
   totalJobItems: number;
 };
 
