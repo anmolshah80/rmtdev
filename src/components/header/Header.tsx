@@ -1,6 +1,6 @@
-import BookmarksButton from '@/components/BookmarksButton';
-import Logo from '@/components/Logo';
-import SearchForm from '@/components/SearchForm';
+import BookmarksButton from '@/components/header/BookmarksButton';
+import Logo from '@/components/header/Logo';
+import SearchForm from '@/components/header/SearchForm';
 
 type HeaderProps = {
   searchText: string;

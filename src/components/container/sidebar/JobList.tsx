@@ -1,4 +1,4 @@
-import JobListItem from '@/components/JobListItem';
+import JobListItem from '@/components/container/sidebar/JobListItem';
 import Spinner from '@/components/Spinner';
 
 import { useActiveJobID } from '@/lib/hooks';

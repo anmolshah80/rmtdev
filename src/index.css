@@ -644,7 +644,6 @@ body::-webkit-scrollbar {
 
 .pagination__button svg {
   width: 10px;
-  transform: translateY(1px);
 }
 
 .pagination__button:hover,
