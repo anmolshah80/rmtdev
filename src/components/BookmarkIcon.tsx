@@ -11,15 +11,19 @@ const BookmarkIcon = ({ jobID }: BookmarkIconProps) => {
 
   const isBookmarked = bookmarkedIds.includes(jobID);
 
+  const handleClick = (
+    event: React.MouseEvent<HTMLButtonElement, MouseEvent>,
+  ) => {
+    event.stopPropagation();
+    event.preventDefault();
+
+    handleToggleBookmark(jobID);
+  };
+
   return (
     <button
       className="bookmark-btn"
-      onClick={(event) => {
-        event.stopPropagation();
-        event.preventDefault();
-
-        handleToggleBookmark(jobID);
-      }}
+      onClick={handleClick}
       title={isBookmarked ? 'Remove from Bookmarks' : 'Add to Bookmarks'}
     >
       <BookmarkFilledIcon className={isBookmarked ? 'filled' : ''} />

@@ -121,7 +121,7 @@ const useBookmarksContext = () => {
 
   if (!context) {
     throw new Error(
-      'useBookmarksContext must be used within a BookmarksContextProvider. Ensure that the BookmarksContextProvider is wrapping the App component',
+      'useBookmarksContext must be used within a BookmarksContextProvider. Ensure that the BookmarksContextProvider is wrapping the App component.',
     );
   }
 
