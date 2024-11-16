@@ -1,9 +1,10 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useContext } from 'react';
 import { useQuery } from '@tanstack/react-query';
 
 import { TJobItem, TJobItemExpanded } from '@/lib/types';
 import { BASE_URL, DEFAULT_TIMEOUT } from '@/lib/constants';
 import { handleErrorStatuses } from '@/lib/handleErrors';
+import { BookmarksContext } from '@/contexts/BookmarksContextProvider';
 
 type JobItemApiResponse = {
   public: boolean;
@@ -115,4 +116,22 @@ const useJobItem = (jobID: number | null) => {
   return [isLoading, errorMessage, jobItem] as const;
 };
 
-export { useJobItems, useActiveJobID, useJobItem, useDebounce };
+const useBookmarksContext = () => {
+  const context = useContext(BookmarksContext);
+
+  if (!context) {
+    throw new Error(
+      'useBookmarksContext must be used within a BookmarksContextProvider. Ensure that the BookmarksContextProvider is wrapping the App component',
+    );
+  }
+
+  return context;
+};
+
+export {
+  useJobItems,
+  useActiveJobID,
+  useJobItem,
+  useDebounce,
+  useBookmarksContext,
+};

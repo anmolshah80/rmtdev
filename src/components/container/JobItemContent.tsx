@@ -70,7 +70,7 @@ const JobItemContent = () => {
             <div className="job-info__below-badge">
               <time className="job-info__time">2d</time>
 
-              <BookmarkIcon />
+              <BookmarkIcon jobID={id} />
             </div>
           </div>
 
