@@ -23,7 +23,7 @@ const JobListItem = ({ jobItem, isActive }: JobListItemProps) => {
         </div>
 
         <div className="job-item__right">
-          <BookmarkIcon />
+          <BookmarkIcon jobID={id} />
           <time className="job-item__time">{daysAgo}d</time>
         </div>
       </a>

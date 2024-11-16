@@ -59,3 +59,5 @@
 - Add pagination to render `seven` _job items_ per _page_
 - Implement sorting to `sort` the search results based on their _relevance score_ or the _recency_ of the _job item_
 - Use the `useMemo` hook to _memoize_ the sorted _search results,_ and recompute only when either the **job list** array changes or the **sorting method** is updated
+- Use the `Context API` to create a `BookmarksContext` that wraps the `App` component, exposing the method to add _job ids_ in _bookmarks_
+- Save the bookmarked _job ids_ to `localStorage`
