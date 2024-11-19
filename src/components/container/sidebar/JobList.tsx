@@ -7,7 +7,7 @@ import { TJobItem } from '@/lib/types';
 type JobListProps = {
   jobItems: TJobItem[];
   loading: boolean;
-  errorMessage?: string | undefined;
+  errorMessage?: string;
 };
 
 const JobList = ({ jobItems, loading, errorMessage }: JobListProps) => {

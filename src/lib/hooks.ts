@@ -181,7 +181,7 @@ const useJobItems = (ids: number[]) => {
   return {
     loading,
     jobItems,
-  };
+  } as const;
 };
 
 export {
