@@ -1,9 +1,11 @@
 import { useState, useEffect, useContext } from 'react';
-import { useQuery } from '@tanstack/react-query';
+import { useQueries, useQuery } from '@tanstack/react-query';
+import toast from 'react-hot-toast';
 
 import { TJobItem, TJobItemExpanded } from '@/lib/types';
 import { BASE_URL, DEFAULT_TIMEOUT } from '@/lib/constants';
 import { handleErrorStatuses } from '@/lib/handleErrors';
+
 import { BookmarksContext } from '@/contexts/BookmarksContextProvider';
 
 type JobItemApiResponse = {
@@ -35,7 +37,7 @@ const fetchJobItems = async (
   return data;
 };
 
-const useJobItems = (searchText: string) => {
+const useSearchQuery = (searchText: string) => {
   const { data, isLoading, error } = useQuery({
     queryKey: ['job-items', searchText],
     queryFn: () => fetchJobItems(searchText),
@@ -86,13 +88,24 @@ const useDebounce = <T>(value: T, timeout = DEFAULT_TIMEOUT): T => {
   return debouncedValue;
 };
 
-const fetchJobItem = async (jobID: number): Promise<JobItemApiResponse> => {
+const fetchJobItem = async (
+  jobID: number,
+  isSuccessiveFetchRequest = false,
+): Promise<JobItemApiResponse> => {
   const response = await fetch(`${BASE_URL}/${jobID}`);
 
   if (!response.ok) {
     const { status } = response;
 
-    handleErrorStatuses(status);
+    if (!isSuccessiveFetchRequest) {
+      handleErrorStatuses(status);
+    }
+
+    const errorMessage = `Error Status Code: ${status}. Failed to fetch bookmarked Job details with ID: ${jobID}.`;
+
+    toast.error(errorMessage, {
+      duration: 8000,
+    });
   }
 
   const data = await response.json();
@@ -128,10 +141,55 @@ const useBookmarksContext = () => {
   return context;
 };
 
+const useLocalStorage = <T>(
+  key: string,
+  initialValue: T,
+): [T, React.Dispatch<React.SetStateAction<T>>] => {
+  const [value, setValue] = useState(() => {
+    const localData = localStorage.getItem(key);
+
+    const parsedJson = JSON.parse(localData || JSON.stringify(initialValue));
+
+    return parsedJson;
+  });
+
+  useEffect(() => {
+    localStorage.setItem(key, JSON.stringify(value));
+  }, [value, key]);
+
+  return [value, setValue] as const;
+};
+
+const useJobItems = (ids: number[]) => {
+  const results = useQueries({
+    queries: ids.map((id) => ({
+      queryKey: ['job-item', id],
+      queryFn: () => fetchJobItem(id, true),
+      staleTime: 1000 * 60 * 60,
+      refetchOnWindowFocus: false,
+      retry: false,
+      enabled: Boolean(id),
+    })),
+  });
+
+  const loading = results.some((result) => result.isLoading);
+
+  const jobItems = results
+    .map((result) => result.data?.jobItem)
+    .filter((jobItem) => jobItem !== undefined);
+
+  return {
+    loading,
+    jobItems,
+  };
+};
+
 export {
-  useJobItems,
+  useSearchQuery,
   useActiveJobID,
   useJobItem,
   useDebounce,
   useBookmarksContext,
+  useLocalStorage,
+  useJobItems,
 };

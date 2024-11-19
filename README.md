@@ -48,7 +48,7 @@
     - [Streamlining Absolute Imports in React with TypeScript and Vite](https://dev.to/mizanrifat/streamlining-absolute-imports-in-react-with-typescript-and-vite-2bpp)
     - [Absolute path in Vite project React TS (alias)](https://gist.github.com/luciaaldana/7343c77b56e02a1ab7ed2903c01a843d)
 
-- Create a custom hook `useJobItems` in `lib/hooks.ts` to fetch job item data from an API, manage loading, error and data states, and return them in an object
+- Create a custom hook `useSearchQuery` in `lib/hooks.ts` that takes in _searchText_ as an argument to fetch job item data from an API, manage loading, error and data states, and return them in an object
 - Implement a job search feature that dynamically fetches job listings from an API as users type in the search input
 - Create `handleErrors.ts` file under _lib_ folder to move the switch case statements used to throw errors based on API response status codes
 - Focus on the search input field by typing the `/` (forward slash) key
@@ -61,3 +61,6 @@
 - Use the `useMemo` hook to _memoize_ the sorted _search results,_ and recompute only when either the **job list** array changes or the **sorting method** is updated
 - Use the `Context API` to create a `BookmarksContext` that wraps the `App` component, exposing the method to add _job ids_ in _bookmarks_
 - Save the bookmarked _job ids_ to `localStorage`
+- Create a generic `useLocalStorage` custom hook in `lib/hooks.ts` that takes in _key_ and _initialValue_ as arguments and saves the data in `localStorage`
+- Create a generic `useJobItems` custom hook in `lib/hooks.ts` that takes in _ids_ as an argument and runs concurrent queries to fetch the data for the number of job ids present in the _ids_ array
+- Populate the job items fetched using `useJobItems` hook in `BookmarksPopover` component
