@@ -6,7 +6,7 @@ import Container from '@/components/container/Container';
 import Footer from '@/components/Footer';
 import Header from '@/components/header/Header';
 
-import { useDebounce, useJobItems } from '@/lib/hooks';
+import { useDebounce, useSearchQuery } from '@/lib/hooks';
 import { TPageDirection, TSortBy } from '@/lib/types';
 import { JOB_RESULTS_PER_PAGE } from '@/lib/constants';
 
@@ -17,7 +17,8 @@ function App() {
   const [currentPage, setCurrentPage] = useState(1);
   const [sortBy, setSortBy] = useState<TSortBy>('relevant');
 
-  const { loading, errorMessage, jobItems } = useJobItems(debouncedSearchText);
+  const { loading, errorMessage, jobItems } =
+    useSearchQuery(debouncedSearchText);
 
   // sort method mutates the original jobItems array and returns a reference to the same array so to prevent that we are spreading the jobItems in a new array and mutating that instead
   const jobItemsSorted = useMemo(() => {
