@@ -1,4 +1,5 @@
 import { forwardRef } from 'react';
+import { createPortal } from 'react-dom';
 
 import { useBookmarksContext } from '@/lib/hooks';
 
@@ -21,7 +22,7 @@ const BookmarksPopover = forwardRef<HTMLDivElement>((_, ref) => {
   }
 
   if (bookmarkedJobItems.length === 0) {
-    return (
+    return createPortal(
       <div className="bookmarks-popover">
         <div className="bookmarks-container">
           <img
@@ -34,17 +35,19 @@ const BookmarksPopover = forwardRef<HTMLDivElement>((_, ref) => {
             favorite job posting.
           </p>
         </div>
-      </div>
+      </div>,
+      document.body,
     );
   }
 
-  return (
+  return createPortal(
     <div className="bookmarks-popover" ref={ref}>
       <JobList
         jobItems={bookmarkedJobItems}
         loading={isBookmarkedJobItemsLoading}
       />
-    </div>
+    </div>,
+    document.body,
   );
 });
 

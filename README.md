@@ -64,3 +64,7 @@
 - Create a generic `useLocalStorage` custom hook in `lib/hooks.ts` that takes in _key_ and _initialValue_ as arguments and saves the data in `localStorage`
 - Create a generic `useJobItems` custom hook in `lib/hooks.ts` that takes in _ids_ as an argument and runs concurrent queries to fetch the data for the number of job ids present in the _ids_ array
 - Populate the job items fetched using `useJobItems` hook in `BookmarksPopover` component
+- Create a generic `useOnClickOutside` custom hook that takes in an _array of refs_ and a _handler function_ as **arguments** and attaches a click event listener to invoke the handler function for all click events outside those refs
+- Create `ActiveJobIdContext` to share the _active job id_ state everywhere it is being used in the application
+- Create `useActiveJobIdContext` to throw an error if the component is not being wrapped with `ActiveJobIdContextProvider`
+- Create a portal using react-dom `createPortal` function to render the `BookmarksPopover` component into the document body instead of the `Header` component

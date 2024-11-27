@@ -1,7 +1,7 @@
 import JobListItem from '@/components/container/sidebar/JobListItem';
 import Spinner from '@/components/Spinner';
 
-import { useActiveJobID } from '@/lib/hooks';
+import { useActiveJobIdContext } from '@/lib/hooks';
 import { TJobItem } from '@/lib/types';
 
 type JobListProps = {
@@ -27,7 +27,7 @@ const JobList = ({ jobItems, loading, errorMessage }: JobListProps) => {
     );
   }
 
-  const activeJobID = useActiveJobID();
+  const { activeJobId } = useActiveJobIdContext();
 
   return (
     <ul className="job-list">
@@ -35,7 +35,7 @@ const JobList = ({ jobItems, loading, errorMessage }: JobListProps) => {
         <JobListItem
           key={jobItem.id}
           jobItem={jobItem}
-          isActive={activeJobID === jobItem.id}
+          isActive={activeJobId === jobItem.id}
         />
       ))}
     </ul>
