@@ -1,7 +1,7 @@
 import BookmarkIcon from '@/components/BookmarkIcon';
 import Spinner from '@/components/Spinner';
 
-import { useActiveJobID, useJobItem } from '@/lib/hooks';
+import { useActiveJobIdContext, useJobItem } from '@/lib/hooks';
 
 const EmptyJobContent = () => {
   return (
@@ -19,10 +19,10 @@ const EmptyJobContent = () => {
 };
 
 const JobItemContent = () => {
-  const activeJobID = useActiveJobID();
+  const { activeJobId } = useActiveJobIdContext();
 
   const [isJobItemLoading, jobItemErrorMessage, jobItem] =
-    useJobItem(activeJobID);
+    useJobItem(activeJobId);
 
   if (isJobItemLoading)
     return (

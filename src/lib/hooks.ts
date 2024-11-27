@@ -7,6 +7,7 @@ import { BASE_URL, DEFAULT_TIMEOUT } from '@/lib/constants';
 import { handleErrorStatuses } from '@/lib/handleErrors';
 
 import { BookmarksContext } from '@/contexts/BookmarksContextProvider';
+import { ActiveJobIdContext } from '@/contexts/ActiveJobIdContextProvider';
 
 type JobItemApiResponse = {
   public: boolean;
@@ -38,13 +39,15 @@ const fetchJobItems = async (
 };
 
 const useSearchQuery = (searchText: string) => {
+  const trimmedSearchText = searchText.trim();
+
   const { data, isLoading, error } = useQuery({
-    queryKey: ['job-items', searchText],
-    queryFn: () => fetchJobItems(searchText),
+    queryKey: ['job-items', trimmedSearchText],
+    queryFn: () => fetchJobItems(trimmedSearchText),
     staleTime: 60 * 60 * 1000,
     refetchOnWindowFocus: false,
     retry: false,
-    enabled: Boolean(searchText),
+    enabled: Boolean(trimmedSearchText),
   });
 
   return {
@@ -54,7 +57,7 @@ const useSearchQuery = (searchText: string) => {
   } as const;
 };
 
-const useActiveJobID = () => {
+const useActiveJobId = () => {
   const [activeJobID, setActiveJobID] = useState<number | null>(null);
 
   useEffect(() => {
@@ -184,12 +187,45 @@ const useJobItems = (ids: number[]) => {
   } as const;
 };
 
+const useOnClickOutside = (
+  refs: React.RefObject<HTMLElement>[],
+  handler: () => void,
+) => {
+  useEffect(() => {
+    const handleClick = (event: MouseEvent) => {
+      if (refs.every((ref) => !ref.current?.contains(event.target as Node))) {
+        handler();
+      }
+    };
+
+    document.addEventListener('click', handleClick);
+
+    return () => {
+      document.removeEventListener('click', handleClick);
+    };
+  }, [refs, handler]);
+};
+
+const useActiveJobIdContext = () => {
+  const context = useContext(ActiveJobIdContext);
+
+  if (!context) {
+    throw new Error(
+      'useActiveJobIdContext must be used within a ActiveJobIdContextProvider. Ensure that the ActiveJobIdContextProvider is wrapping that component.',
+    );
+  }
+
+  return context;
+};
+
 export {
   useSearchQuery,
-  useActiveJobID,
+  useActiveJobId,
   useJobItem,
   useDebounce,
   useBookmarksContext,
   useLocalStorage,
   useJobItems,
+  useOnClickOutside,
+  useActiveJobIdContext,
 };
