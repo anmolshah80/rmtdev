@@ -8,6 +8,8 @@ import { handleErrorStatuses } from '@/lib/handleErrors';
 
 import { BookmarksContext } from '@/contexts/BookmarksContextProvider';
 import { ActiveJobIdContext } from '@/contexts/ActiveJobIdContextProvider';
+import { SearchTextContext } from '@/contexts/SearchTextContextProvider';
+import { JobItemsContext } from '@/contexts/JobItemsContextProvider';
 
 type JobItemApiResponse = {
   public: boolean;
@@ -218,6 +220,30 @@ const useActiveJobIdContext = () => {
   return context;
 };
 
+const useSearchTextContext = () => {
+  const context = useContext(SearchTextContext);
+
+  if (!context) {
+    throw new Error(
+      'useSearchTextContext must be used within a SearchTextContextProvider. Ensure that the SearchTextContextProvider is wrapping that component.',
+    );
+  }
+
+  return context;
+};
+
+const useJobItemsContext = () => {
+  const context = useContext(JobItemsContext);
+
+  if (!context) {
+    throw new Error(
+      'useJobItemsContext must be used within a JobItemsContextProvider. Ensure that the JobItemsContextProvider is wrapping that component.',
+    );
+  }
+
+  return context;
+};
+
 export {
   useSearchQuery,
   useActiveJobId,
@@ -228,4 +254,6 @@ export {
   useJobItems,
   useOnClickOutside,
   useActiveJobIdContext,
+  useSearchTextContext,
+  useJobItemsContext,
 };

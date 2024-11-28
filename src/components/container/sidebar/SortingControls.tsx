@@ -1,14 +1,8 @@
-import { TSortBy } from '@/lib/types';
+import { useJobItemsContext } from '@/lib/hooks';
 
-type SortingControlsProps = {
-  sortBy: TSortBy;
-  handleChangeSortBy: (newSortBy: TSortBy) => void;
-};
+const SortingControls = () => {
+  const { sortBy, handleChangeSortBy } = useJobItemsContext();
 
-const SortingControls = ({
-  sortBy,
-  handleChangeSortBy,
-}: SortingControlsProps) => {
   const relevantButtonClassName = `sorting__button sorting__button--relevant ${
     sortBy === 'relevant' ? 'sorting__button--active' : ''
   }`;

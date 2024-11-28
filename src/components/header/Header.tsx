@@ -4,15 +4,14 @@ import BookmarksButton from '@/components/header/BookmarksButton';
 import Logo from '@/components/header/Logo';
 import SearchForm from '@/components/header/SearchForm';
 
-type HeaderProps = {
-  searchText: string;
-  setSearchText: React.Dispatch<React.SetStateAction<string>>;
-};
+import { useSearchTextContext } from '@/lib/hooks';
 
-const Header = ({ searchText, setSearchText }: HeaderProps) => {
+const Header = () => {
   const searchInputRef = useRef<HTMLInputElement | null>(null);
 
   const [isBookmarksPopoverOpen, setIsBookmarksPopoverOpen] = useState(false);
+
+  const { searchText, handleChangeSearchText } = useSearchTextContext();
 
   return (
     <header className="header">
@@ -26,7 +25,7 @@ const Header = ({ searchText, setSearchText }: HeaderProps) => {
 
       <SearchForm
         searchText={searchText}
-        setSearchText={setSearchText}
+        handleChangeSearchText={handleChangeSearchText}
         setIsBookmarksPopoverOpen={setIsBookmarksPopoverOpen}
         ref={searchInputRef}
       />

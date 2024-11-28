@@ -2,12 +2,12 @@ import { forwardRef, useEffect, useRef, useState } from 'react';
 
 type SearchFormProps = {
   searchText: string;
-  setSearchText: (searchText: string) => void;
+  handleChangeSearchText: (newSearchText: string) => void;
   setIsBookmarksPopoverOpen: React.Dispatch<React.SetStateAction<boolean>>;
 };
 
 const SearchForm = forwardRef<HTMLInputElement, SearchFormProps>(
-  ({ searchText, setSearchText, setIsBookmarksPopoverOpen }, ref) => {
+  ({ searchText, handleChangeSearchText, setIsBookmarksPopoverOpen }, ref) => {
     const searchInputRef =
       ref as React.MutableRefObject<HTMLInputElement | null>;
 
@@ -58,7 +58,7 @@ const SearchForm = forwardRef<HTMLInputElement, SearchFormProps>(
           placeholder="Find remote developer jobs..."
           className="search-input"
           value={searchText}
-          onChange={(event) => setSearchText(event.target.value)}
+          onChange={(event) => handleChangeSearchText(event.target.value)}
           onFocus={() => {
             setSlashKeyClassName('slash-key-hide');
           }}
