@@ -5,7 +5,7 @@ import { useBookmarksContext } from '@/lib/hooks';
 
 import noDataFoundUI from '@/assets/no-data-found-ui.png';
 import Spinner from '@/components/Spinner';
-import JobList from '@/components/container/sidebar/JobList';
+import JobList from '@/components/container/sidebar/jobList/JobList';
 
 const BookmarksPopover = forwardRef<HTMLDivElement>((_, ref) => {
   const { bookmarkedJobItems, isBookmarkedJobItemsLoading } =

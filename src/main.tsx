@@ -6,6 +6,8 @@ import App from '@/App.tsx';
 
 import BookmarksContextProvider from '@/contexts/BookmarksContextProvider';
 import ActiveJobIdContextProvider from '@/contexts/ActiveJobIdContextProvider';
+import SearchTextContextProvider from '@/contexts/SearchTextContextProvider';
+import JobItemsContextProvider from '@/contexts/JobItemsContextProvider';
 
 import '@/index.css';
 
@@ -16,7 +18,11 @@ createRoot(document.getElementById('root')!).render(
     <QueryClientProvider client={queryClient}>
       <BookmarksContextProvider>
         <ActiveJobIdContextProvider>
-          <App />
+          <SearchTextContextProvider>
+            <JobItemsContextProvider>
+              <App />
+            </JobItemsContextProvider>
+          </SearchTextContextProvider>
         </ActiveJobIdContextProvider>
       </BookmarksContextProvider>
     </QueryClientProvider>

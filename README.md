@@ -68,3 +68,6 @@
 - Create `ActiveJobIdContext` to share the _active job id_ state everywhere it is being used in the application
 - Create `useActiveJobIdContext` to throw an error if the component is not being wrapped with `ActiveJobIdContextProvider`
 - Create a portal using react-dom `createPortal` function to render the `BookmarksPopover` component into the document body instead of the `Header` component
+- Close bookmarks popover upon clicking the slash key or focusing on the search input field
+- Create `SearchTextContextProvider` to move search related states and functions from the App component
+- Create `JobItemsContextProvider` to move job items related states and functions from the App component
