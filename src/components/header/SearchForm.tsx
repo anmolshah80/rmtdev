@@ -1,4 +1,7 @@
 import { forwardRef, useEffect, useRef, useState } from 'react';
+import { Loader, Search } from 'lucide-react';
+
+import { useJobItemsContext } from '@/lib/hooks';
 
 type SearchFormProps = {
   searchText: string;
@@ -14,6 +17,8 @@ const SearchForm = forwardRef<HTMLInputElement, SearchFormProps>(
     const slashKeyCounterRef = useRef(0);
 
     const [slashKeyClassName, setSlashKeyClassName] = useState('slash-key');
+
+    const { loading } = useJobItemsContext();
 
     useEffect(() => {
       const focusSearchFieldOnHotkeyPress = (event: KeyboardEvent) => {
@@ -45,7 +50,6 @@ const SearchForm = forwardRef<HTMLInputElement, SearchFormProps>(
 
     return (
       <form
-        action="#"
         className="search"
         onSubmit={(event) => {
           event.preventDefault();
@@ -55,7 +59,7 @@ const SearchForm = forwardRef<HTMLInputElement, SearchFormProps>(
           spellCheck="false"
           type="text"
           required
-          placeholder="Find remote developer jobs..."
+          placeholder="Find remote dev jobs..."
           className="search-input"
           value={searchText}
           onChange={(event) => handleChangeSearchText(event.target.value)}
@@ -70,7 +74,11 @@ const SearchForm = forwardRef<HTMLInputElement, SearchFormProps>(
         />
 
         <button type="submit">
-          <i className="fa-solid fa-magnifying-glass"></i>
+          {loading ? (
+            <Loader width={20} height={20} className="search-spinner-icon" />
+          ) : (
+            <Search width={20} height={20} />
+          )}
         </button>
 
         <span className={slashKeyClassName} title="Type / to start searching">

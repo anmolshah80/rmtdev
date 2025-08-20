@@ -60,6 +60,22 @@ input {
   }
 }
 
+@keyframes pulse-spin {
+  0% {
+    transform: rotate(0deg);
+    animation-timing-function: cubic-bezier(0.55, 0.055, 0.675, 0.19);
+  }
+
+  50% {
+    transform: rotate(180deg);
+    animation-timing-function: cubic-bezier(0.215, 0.61, 0.355, 1);
+  }
+
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
 /* BASE */
 body {
   background-color: #dee3e9;
@@ -99,7 +115,7 @@ body::-webkit-scrollbar {
 }
 
 .fourth-heading {
-  font-size: 16px;
+  font-size: 1rem;
   font-weight: 600;
   text-transform: capitalize;
 }
@@ -158,7 +174,7 @@ body::-webkit-scrollbar {
   padding-top: 12px;
   position: relative;
   justify-content: center;
-  padding-top: 40px;
+  padding-top: 2.5rem;
 
   animation: intro 0.3s;
 }
@@ -180,14 +196,14 @@ body::-webkit-scrollbar {
   display: inline-block;
   height: 13px;
   width: 2px;
-  margin-right: 8px;
+  margin-right: 0.5rem;
   background-color: rgba(255, 255, 255, 0.25);
   transform: translateY(3px);
 }
 
 /* LOGO */
 .logo {
-  margin-left: -8px;
+  margin-left: -0.5rem;
   user-select: none;
 }
 
@@ -245,11 +261,13 @@ body::-webkit-scrollbar {
 .job-list {
   background-color: #fff;
   position: relative;
-  min-height: 140px;
+  min-height: 35dvh;
+  height: 300px;
   flex: 1;
   display: flex;
   flex-direction: column;
 
+  overflow-y: scroll;
   scrollbar-color: #cacdd0 #ffffff; /* Firefox */
   scrollbar-width: thin; /* Firefox */
 }
@@ -280,20 +298,16 @@ body::-webkit-scrollbar {
 }
 
 .bookmarks-popover {
-  /* visibility: hidden; */
-  /* opacity: 0; */
   background-color: #fff;
-  min-height: 76px;
+  /* min-height: calc(340px - 2rem); */
   min-width: 340px;
-  width: 340px;
   border-radius: 4px;
   overflow: hidden;
   z-index: 10;
-  box-shadow: 0 5px 8px rgba(0, 0, 0, 0.15);
+  box-shadow: 0 5px 0.5rem rgba(0, 0, 0, 0.15);
   transform: translateX(-50%);
   transform-origin: left;
   transition: all 0.2s;
-  /* pointer-events: none; */
 
   position: fixed;
   left: 50%;
@@ -301,19 +315,16 @@ body::-webkit-scrollbar {
 }
 
 .job-list--bookmarks {
-  /* visibility: hidden; */
-  /* opacity: 0; */
   min-height: 76px;
   min-width: 340px;
   width: 340px;
   border-radius: 4px;
   overflow: hidden;
   z-index: 10;
-  box-shadow: 0 5px 8px rgba(0, 0, 0, 0.15);
+  box-shadow: 0 5px 0.5rem rgba(0, 0, 0, 0.15);
   transform: translateX(-50%);
   transform-origin: left;
   transition: all 0.2s;
-  /* pointer-events: none; */
 
   position: fixed;
   left: 50%;
@@ -347,7 +358,6 @@ body::-webkit-scrollbar {
   cursor: pointer;
   transition: background-color 0.2s;
   background-color: #fff;
-  /* flex: 1; */
   height: 76px;
 }
 
@@ -373,8 +383,7 @@ body::-webkit-scrollbar {
 .job-item__badge {
   font-size: 13px;
   height: 46px;
-  width: 38px;
-  /* background-color: #8dd335; */
+  width: 2.375rem;
   background-color: #dee3e9;
   border-radius: 5px;
   display: flex;
@@ -384,24 +393,8 @@ body::-webkit-scrollbar {
   margin-right: 13px;
 }
 
-/* .job-item:nth-child(4n + 2) .job-item__badge {
-  background-color: #3d87f1;
-}
-
-.job-item:nth-child(4n + 3) .job-item__badge {
-  background-color: #d2d631;
-}
-
-.job-item:nth-child(4n + 4) .job-item__badge {
-  background-color: #d96a46;
-} */
-
-.job-item__middle {
-}
-
 .job-item__company {
   font-size: 13px;
-  /* margin-bottom: 2px; */
   font-style: italic;
 }
 
@@ -486,13 +479,17 @@ body::-webkit-scrollbar {
 .search > button {
   cursor: pointer;
   position: absolute;
-  top: 18px;
+  top: 1.125rem;
   left: 25px;
 }
 
-.search > button > i {
+.search > button > svg {
   transition: all 0.2s;
   color: rgba(0, 0, 0, 0.73);
+}
+
+.search-spinner-icon {
+  animation: pulse-spin 1.25s infinite;
 }
 
 .search__icon:hover,
@@ -545,11 +542,11 @@ body::-webkit-scrollbar {
   height: 616px;
   width: 976px;
   background-color: #fff;
-  border-radius: 8px;
+  border-radius: 0.5rem;
   display: flex;
   border-top-right-radius: 9px;
   box-shadow: 0 3px 5px rgba(0, 0, 0, 0.07);
-  margin-top: 40px;
+  margin-top: 2.5rem;
   animation: intro 0.3s 0.2s backwards;
 }
 
@@ -599,7 +596,7 @@ body::-webkit-scrollbar {
   font-size: 10px;
   text-transform: uppercase;
   background-color: #e8edf0;
-  padding: 6px 8px;
+  padding: 6px 0.5rem;
   border-radius: 3px;
   margin-left: 2px;
   cursor: pointer;
@@ -620,7 +617,7 @@ body::-webkit-scrollbar {
 
 /* PAGINATION */
 .pagination {
-  height: 40px;
+  height: 2.5rem;
   margin-top: auto;
   display: flex;
   align-items: center;
@@ -671,7 +668,7 @@ body::-webkit-scrollbar {
   font-weight: 500;
 }
 .pagination__icon {
-  font-size: 8px;
+  font-size: 0.5rem;
   color: #9fa6b0;
 }
 
@@ -681,14 +678,15 @@ body::-webkit-scrollbar {
   background-color: #eff2f5;
   position: relative;
   border-top-right-radius: 12px;
-  border-bottom-right-radius: 8px;
+  border-bottom-right-radius: 0.5rem;
 }
 
 .job-details__start-view {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
 }
 
 .job-details__start-view > p:first-child {
@@ -696,7 +694,7 @@ body::-webkit-scrollbar {
   width: 275px;
   text-align: center;
   color: #0d1114;
-  font-size: 18px;
+  font-size: clamp(1rem, 1.75vw, 2rem);
   font-weight: 600;
   margin-bottom: 10px;
 }
@@ -704,7 +702,7 @@ body::-webkit-scrollbar {
 .job-details__start-view > p:nth-child(2) {
   opacity: 0.55;
   color: #24292d;
-  font-size: 14px;
+  font-size: clamp(0.75rem, 1.25vw, 1.5rem);
   width: 275px;
   text-align: center;
 }
@@ -720,16 +718,12 @@ body::-webkit-scrollbar {
   z-index: 0;
   top: 0;
   object-fit: cover;
-  border-top-right-radius: 8px;
+  border-top-right-radius: 0.5rem;
   user-select: none;
 }
 
-.job-details__other {
-}
-
 .job-details__footer {
-  margin-left: 42px;
-  margin-right: 42px;
+  margin-inline: 2.5rem;
   margin-top: 33px;
   padding-top: 13px;
   border-top: 1px solid #dce2e8;
@@ -766,7 +760,7 @@ body::-webkit-scrollbar {
 
 .apply-btn__icon {
   color: rgba(255, 255, 255, 0.65);
-  font-size: 8px;
+  font-size: 0.5rem;
   margin-left: 4px;
   margin-top: -1px;
 }
@@ -775,10 +769,11 @@ body::-webkit-scrollbar {
 .job-info {
   position: relative;
   z-index: 1;
-  margin-bottom: 40px;
+  margin-bottom: 2.5rem;
   display: flex;
-  column-gap: 16px;
+  column-gap: 1rem;
   padding-top: 120px;
+  padding-inline: 2.5rem;
 }
 
 .job-info::before {
@@ -794,15 +789,7 @@ body::-webkit-scrollbar {
     rgba(0, 0, 0, 0.15)
   );
   z-index: -1;
-  border-top-right-radius: 8px;
-}
-
-.job-info__left {
-  padding-left: 42px;
-}
-
-.job-info__right {
-  padding-right: 42px;
+  border-top-right-radius: 0.5rem;
 }
 
 .job-info__badge {
@@ -840,7 +827,7 @@ body::-webkit-scrollbar {
 .bookmark-btn svg {
   color: #d7dbe0;
   transition: all 0.2s;
-  font-size: 18px;
+  font-size: 1.125rem;
 }
 
 .bookmark-btn .filled {
@@ -855,7 +842,7 @@ body::-webkit-scrollbar {
 
 .job-info__description {
   font-size: 14px;
-  margin-top: 18px;
+  margin-top: 1.125rem;
   margin-bottom: 12px;
   line-height: 1.4;
 }
@@ -881,15 +868,14 @@ body::-webkit-scrollbar {
   justify-content: center;
   align-items: center;
   font-size: 9px;
-  margin-right: 8px;
+  margin-right: 0.5rem;
   color: #a1a8b0;
 }
 
 /* QUALIFICATIONS */
 .qualifications {
   display: flex;
-  padding-left: 42px;
-  padding-right: 42px;
+  padding-inline: 2.5rem;
   margin-bottom: 30px;
 }
 
@@ -921,8 +907,7 @@ body::-webkit-scrollbar {
 /* REVIEWS */
 .reviews {
   display: flex;
-  padding-left: 42px;
-  padding-right: 42px;
+  padding-inline: 2.5rem;
 }
 
 .reviews__sub-text {
@@ -971,7 +956,7 @@ body::-webkit-scrollbar {
   align-items: center;
   justify-content: flex-start;
   color: #a4a9ac;
-  font-size: 18px;
+  font-size: 1.125rem;
 }
 
 .footer > .copyright {
@@ -989,16 +974,13 @@ body::-webkit-scrollbar {
   border-radius: 50%;
   animation: spinner 1s infinite linear;
   left: 50%;
-  top: 18%;
+  top: 35%;
   width: 85px;
   height: 85px;
   border-top: 5px solid #e2e7e9;
   border-right: 5px solid #e2e7e9;
   border-bottom: 5px solid #e2e7e9;
   border-left: 5px solid #ccd1d3;
-}
-
-.spinner--search {
 }
 
 .spinner--job-details {
@@ -1023,7 +1005,7 @@ body::-webkit-scrollbar {
   width: 280px;
   min-height: 46px;
   border-radius: 3px;
-  box-shadow: 0 5px 8px rgba(0, 0, 0, 0.15);
+  box-shadow: 0 5px 0.5rem rgba(0, 0, 0, 0.15);
   position: absolute;
   top: 15px;
   right: 15px;
@@ -1041,7 +1023,7 @@ body::-webkit-scrollbar {
 }
 
 .error__icon {
-  font-size: 16px;
+  font-size: 1rem;
   color: rgb(123, 64, 64);
   margin-top: 2px;
 }
@@ -1098,12 +1080,38 @@ body::-webkit-scrollbar {
   justify-content: center;
   gap: 0.5rem;
   padding: 0.75rem;
-  min-height: 140px;
+  min-height: 150px;
+  width: 340px;
+}
+
+.bookmarks-container p {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+  font-weight: bold;
+}
+
+.bookmarks-container p span {
+  font-size: 14px;
+  font-weight: normal;
+  color: #494d4f;
 }
 
 .no-bookmarks-found-img {
   width: 100px;
   height: 100px;
+}
+
+.job-items-empty {
+  opacity: 0.55;
+  color: #24292d;
+  font-size: 14px;
+  height: calc(50dvh - 4rem);
+  text-align: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 2rem;
 }
 
 /* MEDIA QUERIES */
@@ -1113,9 +1121,30 @@ body::-webkit-scrollbar {
   }
 }
 
+@media (min-width: 1100px) {
+  .job-details__start-view > p:first-child {
+    width: 100%;
+  }
+
+  .job-details__start-view > p:nth-child(2) {
+    width: calc(100% - 8rem);
+  }
+}
+
 @media (max-width: 1179px) {
   .job-list--bookmarks {
     right: 0;
+  }
+}
+
+@media (min-width: 1010px) {
+  .job-info__right-content {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .job-info__left-extra-info {
+    display: none;
   }
 }
 
@@ -1132,26 +1161,113 @@ body::-webkit-scrollbar {
   }
 
   .container {
-    flex-direction: column;
+    flex-direction: column-reverse;
     height: initial;
-    width: 100%;
     max-width: 800px;
-    border-radius: 8px;
+    border-radius: 0.5rem;
     overflow: hidden;
+    width: calc(100% - 2rem);
+    margin-inline: auto;
+  }
+
+  .job-details {
+    height: 50dvh;
+    border-bottom: 5px solid #dce2e8;
+    border-bottom-right-radius: 0;
+  }
+
+  .job-details__container {
+    height: 50dvh;
+  }
+
+  .job-details__start-view {
+    height: 50dvh;
+  }
+
+  .job-details__start-view > p:first-child {
+    width: 200px;
+  }
+
+  .job-details__start-view > p:nth-child(2) {
+    width: 225px;
+  }
+
+  .sidebar {
+    width: 100%;
   }
 
   .search-results {
     width: 100%;
   }
 
-  .job-details {
-    display: none;
+  .header {
+    margin-inline: 1rem;
   }
 
   .footer {
-    max-width: 800px;
-    padding-left: 0;
-    padding-right: 0;
+    padding-inline: 0;
+    justify-content: center;
+  }
+
+  .job-info__extras {
+    flex-wrap: wrap;
+    row-gap: 1rem;
+  }
+
+  .qualifications {
+    flex-direction: column;
+    gap: 1rem;
+    padding-inline: 1.5rem;
+  }
+
+  .qualifications__sub-text {
+    width: 100%;
+  }
+
+  .reviews {
+    flex-direction: column;
+    gap: 1rem;
+    padding-inline: 1.5rem;
+  }
+
+  .reviews__sub-text {
+    width: 100%;
+  }
+
+  .job-info {
+    flex-direction: column;
+    padding-inline: 1.5rem;
+  }
+
+  .job-info__left-container {
+    display: flex;
+  }
+
+  .job-info__left {
+    display: flex;
+    gap: 1rem;
+  }
+
+  .job-info__badge {
+    width: 100%;
+  }
+
+  .job-info__below-badge {
+    justify-content: flex-start;
+    gap: 1.75rem;
+  }
+
+  .job-details__footer {
+    margin-inline: 1.5rem;
+  }
+
+  .job-info__right-content {
+    display: none;
+  }
+
+  .job-info__left-extra-info {
+    display: flex;
+    flex-direction: column;
   }
 }
 
@@ -1179,7 +1295,6 @@ body::-webkit-scrollbar {
   .footer > p {
     margin-left: 15px;
     text-align: right;
-    display: none;
   }
 
   .intro {
@@ -1192,7 +1307,25 @@ body::-webkit-scrollbar {
   }
 }
 
+@media (max-width: 500px) {
+  .job-info__company {
+    color: #000000;
+  }
+
+  .job-info__extras {
+    justify-content: space-between;
+  }
+}
+
 @media (max-width: 370px) {
+  .bookmarks-popover {
+    min-width: calc(340px - 2rem);
+  }
+
+  .bookmarks-container {
+    width: calc(340px - 2rem);
+  }
+
   .job-list--bookmarks {
     width: 93vw;
     min-width: initial;

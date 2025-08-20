@@ -244,6 +244,29 @@ const useJobItemsContext = () => {
   return context;
 };
 
+/**
+ *
+ * Hook to render a custom message in the `Sidebar` component if `jobItem`
+ * of type `TJobItemExpanded | undefined` is unavailable
+ */
+const useLocationHash = () => {
+  const [isUrlHashEmpty, setIsUrlHashEmpty] = useState(true);
+
+  useEffect(() => {
+    // Get the hash without the `#` symbol
+    const hash = window.location.hash.substring(1);
+
+    const isHashEmpty = hash === '';
+
+    setIsUrlHashEmpty(isHashEmpty);
+  });
+
+  return {
+    isUrlHashEmpty,
+    setIsUrlHashEmpty,
+  };
+};
+
 export {
   useSearchQuery,
   useActiveJobId,
@@ -256,4 +279,5 @@ export {
   useActiveJobIdContext,
   useSearchTextContext,
   useJobItemsContext,
+  useLocationHash,
 };
