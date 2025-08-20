@@ -1,7 +1,8 @@
 import { useJobItemsContext } from '@/lib/hooks';
+import { ArrowDownNarrowWide } from 'lucide-react';
 
 const SortingControls = () => {
-  const { sortBy, handleChangeSortBy } = useJobItemsContext();
+  const { sortBy, totalJobItems, handleChangeSortBy } = useJobItemsContext();
 
   const relevantButtonClassName = `sorting__button sorting__button--relevant ${
     sortBy === 'relevant' ? 'sorting__button--active' : ''
@@ -18,6 +19,7 @@ const SortingControls = () => {
       <button
         className={relevantButtonClassName}
         onClick={() => handleChangeSortBy('relevant')}
+        disabled={totalJobItems === 0}
       >
         Relevant
       </button>
@@ -25,6 +27,7 @@ const SortingControls = () => {
       <button
         className={recentButtonClassName}
         onClick={() => handleChangeSortBy('recent')}
+        disabled={totalJobItems === 0}
       >
         Recent
       </button>

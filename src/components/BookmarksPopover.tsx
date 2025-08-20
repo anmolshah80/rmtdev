@@ -3,9 +3,10 @@ import { createPortal } from 'react-dom';
 
 import { useBookmarksContext } from '@/lib/hooks';
 
-import noDataFoundUI from '@/assets/no-data-found-ui.png';
 import Spinner from '@/components/Spinner';
 import JobList from '@/components/container/sidebar/jobList/JobList';
+
+import noDataFoundUI from '@/assets/no-data-found-ui.png';
 
 const BookmarksPopover = forwardRef<HTMLDivElement>((_, ref) => {
   const { bookmarkedJobItems, isBookmarkedJobItemsLoading } =
@@ -30,9 +31,12 @@ const BookmarksPopover = forwardRef<HTMLDivElement>((_, ref) => {
             alt="No bookmarks found"
             className="no-bookmarks-found-img"
           />
+
           <p>
-            No bookmarks were found! Try searching for a job and bookmark your
-            favorite job posting.
+            No bookmarks found!
+            <span>
+              Try searching for a job and bookmark your favorite job posting.
+            </span>
           </p>
         </div>
       </div>,

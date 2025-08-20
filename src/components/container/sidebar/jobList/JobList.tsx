@@ -1,7 +1,7 @@
 import JobListItem from '@/components/container/sidebar/jobList/JobListItem';
 import Spinner from '@/components/Spinner';
 
-import { useActiveJobIdContext } from '@/lib/hooks';
+import { useActiveJobIdContext, useLocationHash } from '@/lib/hooks';
 import { TJobItem } from '@/lib/types';
 
 type JobListProps = {
@@ -11,6 +11,10 @@ type JobListProps = {
 };
 
 const JobList = ({ jobItems, loading, errorMessage }: JobListProps) => {
+  const { isUrlHashEmpty } = useLocationHash();
+
+  const { activeJobId } = useActiveJobIdContext();
+
   if (loading) {
     return (
       <ul className="job-list">
@@ -27,7 +31,14 @@ const JobList = ({ jobItems, loading, errorMessage }: JobListProps) => {
     );
   }
 
-  const { activeJobId } = useActiveJobIdContext();
+  if (jobItems.length === 0 && isUrlHashEmpty) return null;
+
+  if (jobItems.length === 0)
+    return (
+      <p className="job-items-empty">
+        Try searching for any technology your ideal job is working with
+      </p>
+    );
 
   return (
     <ul className="job-list">

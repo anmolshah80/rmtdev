@@ -12,6 +12,7 @@ type TJobItemsContext = {
   currentPage: number;
   totalNumberOfPages: number;
   sortBy: TSortBy;
+  debouncedSearchText: string;
   handleChangePage: (direction: TPageDirection) => void;
   handleChangeSortBy: (newSortBy: TSortBy) => void;
 };
@@ -79,6 +80,7 @@ const JobItemsContextProvider = ({
       currentPage,
       totalNumberOfPages,
       sortBy,
+      debouncedSearchText,
       handleChangePage,
       handleChangeSortBy,
     }),
@@ -90,6 +92,7 @@ const JobItemsContextProvider = ({
       currentPage,
       totalNumberOfPages,
       sortBy,
+      debouncedSearchText,
       handleChangePage,
       handleChangeSortBy,
     ],
