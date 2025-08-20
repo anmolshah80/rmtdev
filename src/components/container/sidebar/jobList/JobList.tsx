@@ -31,7 +31,8 @@ const JobList = ({ jobItems, loading, errorMessage }: JobListProps) => {
     );
   }
 
-  if (jobItems.length === 0 && isUrlHashEmpty) return null;
+  if (jobItems.length === 0 && isUrlHashEmpty)
+    return <ul className="job-list"></ul>;
 
   if (jobItems.length === 0)
     return (
