@@ -254,14 +254,14 @@ const useLocationHash = () => {
 
   const { debouncedSearchText } = useJobItemsContext();
 
-  useEffect(() => {
-    // Get the hash without the `#` symbol
-    const hash = window.location.hash.substring(1);
+  // Get the hash without the `#` symbol
+  const hash = window.location.hash.substring(1);
 
+  useEffect(() => {
     const isHashEmpty = hash === '';
 
     setIsUrlHashEmpty(isHashEmpty);
-  }, [debouncedSearchText]);
+  }, [debouncedSearchText, hash]);
 
   return {
     isUrlHashEmpty,
