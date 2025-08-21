@@ -46,7 +46,7 @@ const SearchForm = forwardRef<HTMLInputElement, SearchFormProps>(
       return () => {
         document.removeEventListener('keydown', focusSearchFieldOnHotkeyPress);
       };
-    }, []);
+    }, [searchInputRef, setIsBookmarksPopoverOpen]);
 
     return (
       <form
@@ -56,8 +56,9 @@ const SearchForm = forwardRef<HTMLInputElement, SearchFormProps>(
         }}
       >
         <input
-          spellCheck="false"
           type="text"
+          name="searchInput"
+          spellCheck="false"
           required
           placeholder="Find remote dev jobs..."
           className="search-input"

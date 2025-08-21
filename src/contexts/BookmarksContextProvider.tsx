@@ -1,20 +1,10 @@
-import { createContext } from 'react';
+import { BookmarksContext } from '@/contexts/BookmarksContext';
 
 import { useJobItems, useLocalStorage } from '@/lib/hooks';
-import { TJobItemExpanded } from '@/lib/types';
 
 type BookmarksContextProviderProps = {
   children: React.ReactNode;
 };
-
-type TBookmarksContext = {
-  bookmarkedIds: number[];
-  bookmarkedJobItems: TJobItemExpanded[];
-  isBookmarkedJobItemsLoading: boolean;
-  handleToggleBookmark: (jobID: number) => void;
-};
-
-export const BookmarksContext = createContext<TBookmarksContext | null>(null);
 
 const BookmarksContextProvider = ({
   children,
