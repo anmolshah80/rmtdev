@@ -6,10 +6,10 @@ import { TJobItem, TJobItemExpanded } from '@/lib/types';
 import { BASE_URL, DEFAULT_TIMEOUT } from '@/lib/constants';
 import { handleErrorStatuses } from '@/lib/handleErrors';
 
-import { BookmarksContext } from '@/contexts/BookmarksContextProvider';
-import { ActiveJobIdContext } from '@/contexts/ActiveJobIdContextProvider';
-import { SearchTextContext } from '@/contexts/SearchTextContextProvider';
-import { JobItemsContext } from '@/contexts/JobItemsContextProvider';
+import { BookmarksContext } from '@/contexts/BookmarksContext';
+import { ActiveJobIdContext } from '@/contexts/ActiveJobIdContext';
+import { SearchTextContext } from '@/contexts/SearchTextContext';
+import { JobItemsContext } from '@/contexts/JobItemsContext';
 
 type JobItemApiResponse = {
   public: boolean;
@@ -88,7 +88,7 @@ const useDebounce = <T>(value: T, timeout = DEFAULT_TIMEOUT): T => {
     const timerId = setTimeout(() => setDebouncedValue(value), timeout);
 
     return () => clearTimeout(timerId);
-  }, [value]);
+  }, [value, timeout]);
 
   return debouncedValue;
 };
@@ -252,6 +252,8 @@ const useJobItemsContext = () => {
 const useLocationHash = () => {
   const [isUrlHashEmpty, setIsUrlHashEmpty] = useState(true);
 
+  const { debouncedSearchText } = useJobItemsContext();
+
   useEffect(() => {
     // Get the hash without the `#` symbol
     const hash = window.location.hash.substring(1);
@@ -259,7 +261,7 @@ const useLocationHash = () => {
     const isHashEmpty = hash === '';
 
     setIsUrlHashEmpty(isHashEmpty);
-  });
+  }, [debouncedSearchText]);
 
   return {
     isUrlHashEmpty,

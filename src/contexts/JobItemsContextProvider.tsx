@@ -1,27 +1,14 @@
-import { createContext, useCallback, useMemo, useState } from 'react';
+import { useCallback, useMemo, useState } from 'react';
+
+import { JobItemsContext } from '@/contexts/JobItemsContext';
 
 import { useSearchQuery, useSearchTextContext } from '@/lib/hooks';
-import { TJobItem, TPageDirection, TSortBy } from '@/lib/types';
+import { TPageDirection, TSortBy } from '@/lib/types';
 import { JOB_RESULTS_PER_PAGE } from '@/lib/constants';
-
-type TJobItemsContext = {
-  loading: boolean;
-  errorMessage: string | undefined;
-  jobItemsSortedAndSliced: TJobItem[];
-  totalJobItems: number;
-  currentPage: number;
-  totalNumberOfPages: number;
-  sortBy: TSortBy;
-  debouncedSearchText: string;
-  handleChangePage: (direction: TPageDirection) => void;
-  handleChangeSortBy: (newSortBy: TSortBy) => void;
-};
 
 type JobItemsContextProviderProps = {
   children: React.ReactNode;
 };
-
-export const JobItemsContext = createContext<TJobItemsContext | null>(null);
 
 const JobItemsContextProvider = ({
   children,

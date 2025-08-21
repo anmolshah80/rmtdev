@@ -1,18 +1,10 @@
-import { createContext } from 'react';
+import { ActiveJobIdContext } from '@/contexts/ActiveJobIdContext';
 
 import { useActiveJobId } from '@/lib/hooks';
-
-type TActiveJobIdContext = {
-  activeJobId: number | null;
-};
 
 type ActiveJobIdContextProviderProps = {
   children: React.ReactNode;
 };
-
-export const ActiveJobIdContext = createContext<TActiveJobIdContext | null>(
-  null,
-);
 
 const ActiveJobIdContextProvider = ({
   children,

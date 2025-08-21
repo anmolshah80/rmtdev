@@ -1,5 +1,4 @@
 import { useJobItemsContext } from '@/lib/hooks';
-import { ArrowDownNarrowWide } from 'lucide-react';
 
 const SortingControls = () => {
   const { sortBy, totalJobItems, handleChangeSortBy } = useJobItemsContext();

@@ -1,18 +1,12 @@
-import { createContext, useState } from 'react';
+import { useState } from 'react';
+
+import { SearchTextContext } from '@/contexts/SearchTextContext';
 
 import { useDebounce } from '@/lib/hooks';
-
-type TSearchTextContext = {
-  searchText: string;
-  debouncedSearchText: string;
-  handleChangeSearchText: (newSearchText: string) => void;
-};
 
 type SearchTextContextProviderProps = {
   children: React.ReactNode;
 };
-
-export const SearchTextContext = createContext<TSearchTextContext | null>(null);
 
 const SearchTextContextProvider = ({
   children,
